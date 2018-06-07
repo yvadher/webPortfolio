@@ -19,7 +19,11 @@ var jsVendorFiles      = [];             // Holds the js vendor files to be conc
 var myJsFiles          = ['js/*.js'];    // Holds the js files to be concatenated
 var fs                 = require('fs');  // ExistsSync var to check if font directory patch exist
 var bowerDirectory     = getBowerDirectory();
+var bootstrapJSPath    = bowerDirectory + "bootstrap/dist/js/bootstrap.min.js";
+var bootstrapCSSPath   = bowerDirectory + "bootstrap/dist/css/bootstrap.min.css";
+var bootstrapFontsPath = bowerDirectory + "bootstrap/dist/fonts/**.*";
 var jqueryPath         = bowerDirectory + "jquery/dist/jquery.min.js";
+var bootstrapExist     = false;
 var onError            = function(err) { // Custom error msg with beep sound and text color
     notify.onError({
       title:    "Gulp error in " + err.plugin,
@@ -51,6 +55,25 @@ function setupJquery(data) {
   data.splice(data.length, 0, jqueryLocalFallback);
 }
 
+function setupBootstrap(data) {
+  bootstrapExist = true;
+  setupJquery(data);
+  var bootstrapCSSCDN = '    link(href="https://maxcdn.bootstrapcdn.com/bootstrap/{{BOOTSTRAP_VERSION}}/css/bootstrap.min.css", rel="stylesheet", integrity="{{BOOTSTRAP_SRI_HASH}}", crossorigin="anonymous")';
+  var bootstrapCSSLocalFallback = '    div(id="bootstrapCssTest" class="hidden")\n' + "    <script>$(function(){if ($('#bootstrapCssTest').is(':visible')){$('head').prepend('<link rel=" + '"stylesheet" href="/js/vendor/bootstrap/dist/css/bootstrap.min.css">' + "');}});</script>";
+  var bootstrapJSCDN = '    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/{{BOOTSTRAP_VERSION}}/js/bootstrap.min.js", integrity="{{BOOTSTRAP_SRI_HASH}}", crossorigin="anonymous")';
+  var bootstrapJSLocalFallback = "    <script>if(typeof($.fn.modal) === 'undefined'" + ") {document.write('<script src=" + '"/js/vendor/bootstrap/dist/js/bootstrap.min.js"' + "><\\/script>')}</script>";
+  gulp.src(bootstrapFontsPath)
+  .pipe(gulp.dest('./build/js/vendor/bootstrap/dist/fonts'));
+  gulp.src(bootstrapJSPath)
+  .pipe(gulp.dest('./build/js/vendor/bootstrap/dist/js'));
+  gulp.src(bootstrapCSSPath)
+  .pipe(gulp.dest('./build/js/vendor/bootstrap/dist/css'));
+
+  data.splice(8, 0, bootstrapCSSCDN);
+  data.splice(data.length, 0, bootstrapJSCDN);
+  data.splice(data.length, 0, bootstrapJSLocalFallback);
+  data.splice(data.length, 0, bootstrapCSSLocalFallback);
+}
 
 function findKeyText(data, txt) {
   for (var i = 0; i < data.length; i++) {
@@ -114,7 +137,11 @@ gulp.task('setup-src', function() {
   }
 
   if(bowerDirectory) {
-    if(fs.existsSync(jqueryPath) && !findKeyText(data, 'jquery.min.js')) {
+    if(fs.existsSync(bootstrapJSPath) && !findKeyText(data, 'bootstrap.min.css')) {
+      setupBootstrap(data);
+    }
+
+    if(fs.existsSync(jqueryPath) && !bootstrapExist  && !findKeyText(data, 'jquery.min.js')) {
       setupJquery(data);
     }
   }
