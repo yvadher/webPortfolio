@@ -1,7 +1,0 @@
-{
-    "directory"   : "js/vendor/",
-	"registry" : "http://registry.bower.io",
-	"https-proxy": "http://oproxy.fg.rbc.com:8080/",
-	"proxy": "http://oproxy.fg.rbc.com:8080/",
-	"strict-ssl": false
-}
