@@ -26,8 +26,11 @@
   },
   "homepage": "https://github.com/yvadher/webPortfolio#readme",
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "Babel": "0.0.1",
     "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
+    "babel-loader": "^8.0.0-beta.4",
     "babel-preset-env": "^1.7.0",
     "css-loader": "^0.28.11",
     "extract-loader": "^2.0.1",
@@ -47,6 +50,7 @@
   },
   "dependencies": {
     "breakpoints-js": "^1.0.5",
+    "expose-loader": "^0.7.5",
     "jquery": "^3.3.1",
     "util": "^0.11.0"
   }

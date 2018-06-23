@@ -1,7 +1,7 @@
 // Load app style
 import './styles/main.scss';
-import 'breakpoints-js';
+import { jQuery, $ } from 'jquery';
 import 'util';
-import 'jquery';
+
 // Scripts
-import './scripts'
+import './scripts/main.js'
