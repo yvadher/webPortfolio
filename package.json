@@ -51,6 +51,7 @@
   "dependencies": {
     "breakpoints-js": "^1.0.5",
     "expose-loader": "^0.7.5",
+    "hoek": "^5.0.3",
     "jquery": "^3.3.1",
     "util": "^0.11.0"
   }
