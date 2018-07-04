@@ -44,13 +44,6 @@ module.exports = {
                 test: /\.pug$/,
                  use: 'pug-loader'
             },
-            // {
-            //     loader: 'expose-loader',
-            //     options: 'jQuery'
-            // },{
-            //     loader: 'expose-loader',
-            //     options: '$'
-            // }
         ]
     },
     resolve: {
@@ -60,7 +53,16 @@ module.exports = {
         new HtmlWebpackPlugin({ 
             template: './views/index.pug',
             filename: 'index.html',
+        }),
+        new HtmlWebpackPlugin({ 
+            template: './views/pages/cuepathWork/cuepathWork.pug',
+            filename: 'cuepathWork.html',
+        }),
+        new HtmlWebpackPlugin({ 
+            template: './views/pages/rbcWork/rbcWork.pug',
+            filename: 'rbcWork.html',
         })
     ],
+
     mode: 'development'
 };
