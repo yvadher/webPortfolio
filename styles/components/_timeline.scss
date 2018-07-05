@@ -32,8 +32,6 @@ $dot-diameter: 8px;
     height: 80px;
     object-fit: contain;
   }
-
-
 }
 
 .entry {
@@ -41,6 +39,7 @@ $dot-diameter: 8px;
   text-align: left;
   position: relative;
   .title {
+    
     margin-bottom: 5em;
     float: left;
     width: 33%;
