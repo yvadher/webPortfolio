@@ -7,6 +7,21 @@
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
+  ul 
+	{
+		color: black;
+		li {
+			color:black;
+			font-weight: 400;
+			font-size: 110%;
+      text-decoration: none;
+      a {
+        color: black;
+        font-weight: 700;
+      }
+		}
+	}
+
 }
 
 /* The actual timeline (the vertical ruler) */
@@ -99,31 +114,40 @@
 @media screen and (max-width: 600px) {
 /* Place the timelime to the left */
   .timeline-projects::after {
-    left: 31px;
+	left: 31px;
   }
 
 /* Full-width containers */
   .container-projects {
-    width: 100%;
-    padding-left: 70px;
-    padding-right: 25px;
+	width: 100%;
+	padding-left: 70px;
+	padding-right: 25px;
   }
 
 /* Make sure that all arrows are pointing leftwards */
   .container-projects::before {
-    left: 60px;
-    border: medium solid #FF5D59;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent #FF5D59 transparent transparent;
+	left: 60px;
+	border: medium solid #FF5D59;
+	border-width: 10px 10px 10px 0;
+	border-color: transparent #FF5D59 transparent transparent;
   }
 
 /* Make sure all circles are at the same spot */
-  .left-projects::after, .right::after {
-    left: 15px;
+  .left-projects::after, .right-projects::after {
+	left: 18px;
   }
 
 /* Make all right containers behave like the left ones */
   .right-projects {
-    left: 0%;
+	left: 0%;
   }
+}
+.flex-container{
+	display: flex;
+	align-content: center;
+	justify-content: center;
+}
+
+.projectImg{
+	height: 200px;
 }
