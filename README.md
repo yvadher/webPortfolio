@@ -1,4 +1,4 @@
 ## Custom portfolio 
 
-- Used HTML/CSS and Java script to make beutiful portfolio page. 
-    
+- Beutiful portfolio page. 
+- Webpack 4, Pug templating engine, Sass 
